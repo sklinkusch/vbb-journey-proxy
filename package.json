@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "micro",
+    "dev": "nodemon --exec 'micro -p 3001' -w index.js"
   },
   "keywords": [],
   "author": "",
