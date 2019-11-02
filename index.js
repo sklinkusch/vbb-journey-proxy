@@ -13,8 +13,9 @@ module.exports = async (req, res) => {
   const {
     from,
     to,
-    dep = new Date(),
-    arr = null,
+    type = "d",
+    departure = new Date(),
+    arrival = null,
     results = 5,
     via = null,
     stopovers = false,
@@ -34,28 +35,45 @@ module.exports = async (req, res) => {
   res.setHeader("Access-Control-Allow-Origin", "*");
   res.setHeader("Content-Type", "application/json");
   if (query) {
-    client
-      .journeys(from, to, {
-        departure: dep,
-        arrival: arr,
+    const products = {
+      suburban: sbahn,
+      subway: ubahn,
+      tram,
+      bus,
+      ferry,
+      express,
+      regional: rbahn,
+    };
+    let opt;
+    if (type === "d") {
+      opt = {
+        departure,
         results,
         via,
         stopovers,
         transfers,
         transferTime,
-        products: {
-          suburban: sbahn,
-          subway: ubahn,
-          tram,
-          bus,
-          ferry,
-          express,
-          regional: rbahn,
-        },
+        products,
         remarks,
         startWithWalking,
         language,
-      })
+      };
+    } else {
+      opt = {
+        arrival,
+        results,
+        via,
+        stopovers,
+        transfers,
+        transferTime,
+        products,
+        remarks,
+        startWithWalking,
+        language,
+      };
+    }
+    client
+      .journeys(from, to, opt)
       .then(data => send(res, 200, data))
       .catch(error => send(res, 500, error));
   } else {
