@@ -1,12 +1,12 @@
-require('isomorphic-fetch');
-require('now-env');
+require("isomorphic-fetch");
+require("now-env");
 
-const createClient = require('hafas-client');
-const vbbProfile = require('hafas-client/p/vbb');
-const client = createClient(vbbProfile, 'vbbMicro');
+const createClient = require("hafas-client");
+const vbbProfile = require("hafas-client/p/vbb");
+const client = createClient(vbbProfile, "vbbMicro");
 
-const { parse } = require('url');
-const { send } = require('micro');
+const { parse } = require("url");
+const { send } = require("micro");
 
 module.exports = async (req, res) => {
   const { query } = parse(req.url);
@@ -29,10 +29,10 @@ module.exports = async (req, res) => {
     rbahn = true,
     remarks = true,
     startWithWalking = true,
-    language = 'de',
+    language = "de",
   } = parseQueryString(query);
-  res.setHeader('Access-Control-Allow-Origin', '*');
-  res.setHeader('Content-Type', 'application/json');
+  res.setHeader("Access-Control-Allow-Origin", "*");
+  res.setHeader("Content-Type", "application/json");
   if (query) {
     client
       .journeys(from, to, {
@@ -65,9 +65,9 @@ module.exports = async (req, res) => {
 
 const parseQueryString = function(queryString) {
   const params = {};
-  const queries = queryString.split('&');
+  const queries = queryString.split("&");
   for (let i = 0; i < queries.length; i++) {
-    const temp = queries[i].split('=');
+    const temp = queries[i].split("=");
     params[temp[0]] = temp[1];
   }
   return params;
