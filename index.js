@@ -10,31 +10,31 @@ const { send } = require("micro");
 
 module.exports = async (req, res) => {
   const { query } = parse(req.url);
-  const {
-    from,
-    to,
-    type = "d",
-    departure = new Date(),
-    arrival = null,
-    results = 5,
-    via = null,
-    stopovers = false,
-    transfers = -1,
-    transferTime = 0,
-    sbahn = true,
-    ubahn = true,
-    tram = true,
-    bus = true,
-    ferry = true,
-    express = true,
-    rbahn = true,
-    remarks = true,
-    startWithWalking = true,
-    language = "de",
-  } = parseQueryString(query);
   res.setHeader("Access-Control-Allow-Origin", "*");
   res.setHeader("Content-Type", "application/json");
   if (query) {
+    const {
+      from,
+      to,
+      type = "d",
+      departure = new Date(),
+      arrival = null,
+      results = 5,
+      via = null,
+      stopovers = false,
+      transfers = -1,
+      transferTime = 0,
+      sbahn = true,
+      ubahn = true,
+      tram = true,
+      bus = true,
+      ferry = true,
+      express = true,
+      rbahn = true,
+      remarks = true,
+      startWithWalking = true,
+      language = "de",
+    } = parseQueryString(query);
     const products = {
       suburban: sbahn,
       subway: ubahn,
