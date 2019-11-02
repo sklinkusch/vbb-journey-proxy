@@ -1,0 +1,11 @@
+{
+  "version": 2,
+  "name": "sklinkusch-vbbjourney",
+  "alias": "sklinkusch-vbbjourney.now.sh",
+  "builds": [
+    {
+      "src": "index.js",
+      "use": "@now/node"
+    }
+  ]
+}
