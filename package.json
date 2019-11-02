@@ -8,5 +8,12 @@
   },
   "keywords": [],
   "author": "",
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {
+    "hafas-client": "^4.6.1",
+    "isomorphic-fetch": "^2.2.1",
+    "micro": "^9.3.4",
+    "now-env": "^3.2.0",
+    "vbb-hafas": "^6.1.0"
+  }
 }
